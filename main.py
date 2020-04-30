@@ -73,41 +73,48 @@ def variance_of_loans(data):
 	a = np.array(loan_amounts, dtype=int)
 	return np.var(a, dtype=np.float)
 
-def Avarage_Amount_of_Country(data,county):
+
+def avarage_amount_of_country(data, county):
 	total = 0
 	counter = 0
 	for i in range(0, 25):
-		if data[i].country_name.equals(county):
-			total = total+data[i].loan_amount
-			counter = counter+1
-	result = total/counter
+		if data[i].country_name == county:
+			total = total + int(data[i].loan_amount)
+			counter = counter + 1
+	result = total / counter
 	return result
 
-def Avarage_time_per_dollar(data, id):
+
+def avarage_time_per_dollar(data, id):
 	time = 0
 	dollar = 0
 	for i in range(0, 25):
-		if data[i].id == id:
+		if int(data[i].id) == int(id):
 			time += int(data[i].time_to_raise)
 			dollar += int(data[i].loan_amount)
 	if dollar != 0:
 		result = time / dollar
-	else: result = 0
+	else:
+		result = 0
 	return result
-#testing only
+
+
+# testing only
 def sortData(data):
 	data.sort(key=lambda x: x.id)
 	print(data[0].id)
 	return
-sortData(data)
 
-#print(Avarage_time_per_dollar(data,212763))
-#Avarage_Amount_of_Country(data,"Bolivia")
 
-	# country_set = {}
-	# for i in range(0,25):
-	# 	country_set.add(data[i].country_name)
-	# country_set.
+# sortData(data)
+#
+# print(Avarage_time_per_dollar(data,212763))
+print(avarage_amount_of_country(data, "Bolivia"))
+
+# country_set = {}
+# for i in range(0,25):
+# 	country_set.add(data[i].country_name)
+# country_set.
 
 #
 # print(find_max_loan(data).loan_amount)
