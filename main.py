@@ -183,7 +183,7 @@ def menu(data):
 			print(("Variance = {} ").format(variance_of_loans(data)))
 		if ch == '6':
 			t = 1
-			county = input("please enter the country name:")
+			county = input("please enter  the country name:")
 			print(("The avarge loan amount of the country = {} ").format(avarage_amount_of_country(data, county)))
 		if ch == '7':
 			t = 1
