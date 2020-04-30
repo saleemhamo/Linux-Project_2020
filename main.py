@@ -162,7 +162,7 @@ def menu(data):
 		ch = input("please enter your choice ~~>")
 		if ch == '1':
 			t=1
-			print("total =")
+			print("total  =")
 			print(find_total_amount(data))
 		if ch == '2':
 			t = 1
