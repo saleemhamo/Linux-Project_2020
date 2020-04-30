@@ -74,5 +74,50 @@ def variance_of_loans(data):
 	return np.var(a, dtype=np.float)
 
 
+def Avarage_Amount_of_Country(data, county):
+	total = 0
+	counter = 0
+	for i in range(0, 25):
+		if data[i].country_name.equals(county):
+			total = total + data[i].loan_amount
+			counter = counter + 1
+	result = total / counter
+	return result
+
+
+def Avarage_time_per_dollar(data, id):
+	time = 0
+	dollar = 0
+	for i in range(0, 25):
+		if data[i].id == id:
+			time += int(data[i].time_to_raise)
+			dollar += int(data[i].loan_amount)
+	if dollar != 0:
+		result = time / dollar
+	else:
+		result = 0
+	return result
+
+
+# testing only
+def sortData(data):
+	data.sort(key=lambda x: x.id, reverse=True)
+	print(data[0].id)
+
+
+
+sortData(data)
+
+
+
+# print(Avarage_time_per_dollar(data,212763))
+# Avarage_Amount_of_Country(data,"Bolivia")
+
+# country_set = {}
+# for i in range(0,25):
+# 	country_set.add(data[i].country_name)
+# country_set.
+
+#
 # print(find_max_loan(data).loan_amount)
 # print(find_average_amount(data))
