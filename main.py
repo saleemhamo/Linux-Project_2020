@@ -96,8 +96,8 @@ def Avarage_time_per_dollar(data, id):
 	return result
 #testing only
 def sortData(data):
-	data.sort()
-	print(data)
+	data.sort(key=lambda x: x.id)
+	print(data[0].id)
 	return
 sortData(data)
 
