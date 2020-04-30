@@ -1,4 +1,5 @@
 import csv
+from os import system, name
 import statistics
 
 import numpy as np
@@ -20,6 +21,11 @@ with open('data.csv') as csv_file:
 		line_count += 1
 
 
+def clear():
+	# for windows
+	if name == 'nt':
+		_ = system('cls')
+	return
 def find_total_amount(data):
 	sum = 0
 	for i in range(0, 25):  # data samples = 25
@@ -102,46 +108,42 @@ def avarage_time_per_dollar(data, id):
 
 # testing only
 def sortData(data):
-
 	print("1-sort on id")
 	print("2-sort on loan amount")
 	print("3-sort on country name")
-	print("4-sort on time to raise")
-	print("5-sort on num lenders total")
+	print("4-sort on status")
+	print("5-sort on time to raise")
+	print("6-sort on num lenders total")
 	choice = input("please enter your choice")
 	if choice == '1':
-		id_lst = []
-		for i in range (0, 25):
-			id_lst.append(int(data[i].id))
-		id_lst.sort()
-		print(id_lst)
+		data.sort(key=lambda x: x.id)
+
 	if choice == '2':
-		loan_lst = []
-		for i in range (0, 25):
-			loan_lst.append(int(data[i].loan_amount))
-		loan_lst.sort()
-		print(loan_lst)
+		data.sort(key=lambda x: x.loan_amount)
+
 	if choice == '3':
-		c_lst = []
-		c_set = {}
-		for i in range(0, 25):
-			c_lst.append(data[i].country_name)
-		c_set=set(c_lst)
-		c_lst = list(c_set)
-		c_lst.sort()
-		print(c_lst)
+		data.sort(key=lambda x: x.country_name)
+
 	if choice == '4':
-		time_lst = []
-		for i in range(0, 25):
-			time_lst.append(int(data[i].time_to_raise))
-		time_lst.sort()
-		print(time_lst)
+		data.sort(key=lambda x: x.status)
+
 	if choice == '5':
-		lenders_lst = []
-		for i in range(0, 25):
-			lenders_lst.append(int(data[i].num_lenders_total))
-		lenders_lst.sort()
-		print(lenders_lst)
+		data.sort(key=lambda x: x.time_to_raise)
+
+	if choice == '6':
+		data.sort(key=lambda x: x.num_lenders_total)
+	print("Ordered List :")
+	for i in range(0, 25):
+		print(("id:{},loan_amount{},country:{},status:{},time to raise:{},num lenders total:{},").format(data[i].id,
+																									data[i].loan_amount,
+																									data[
+																										i].country_name,
+																									  data[i].status,
+																									data[
+																										i].time_to_raise,
+																									data[
+																										i].num_lenders_total))
+
 	return
 
 def menu(data):
@@ -162,33 +164,27 @@ def menu(data):
 		ch = input("please enter your choice ~~>")
 		if ch == '1':
 			t=1
-			print("total  =")
-			print(find_total_amount(data))
+			print(("total  = {} ").format(find_total_amount(data)))
 		if ch == '2':
 			t = 1
-			print("Avarage = ")
-			print(find_average_amount(data))
+			print(("Avarage = {}").format(find_average_amount(data)))
+
 		if ch == '3':
 			t = 1
-			print("Minmum loan =")
-			print(find_min_loan(data).loan_amount)
-			print("Max loan=")
-			print(find_max_loan(data).loan_amount)
+			print(("Minmum loan ={}").format(find_min_loan(data).loan_amount))
+			print(("Max loan={}").format(find_max_loan(data).loan_amount))
+
 		if ch == '4':
 			t = 1
-			print("Minmum country loan = ")
-			print(find_min_loan_country(data))
-			print("Maximum County loan = ")
-			print(find_max_loan_country(data))
+			print(("Minmum country loan = {} ").format(find_min_loan_country(data)))
+			print(("Maximum County loan = {}").format(find_max_loan_country(data)))
 		if ch == '5':
 			t = 1
-			print("Variance = ")
-			print(variance_of_loans(data))
+			print(("Variance = {} ").format(variance_of_loans(data)))
 		if ch == '6':
 			t = 1
 			county = input("please enter the country name:")
-			print("The avarge loan amount of the country =")
-			print(avarage_amount_of_country(data, county))
+			print(("The avarge loan amount of the country = {} ").format(avarage_amount_of_country(data, county)))
 		if ch == '7':
 			t = 1
 			id = input("please enter the id of the loan:")
@@ -203,18 +199,3 @@ def menu(data):
 			res = input("please enter 1 to back to menu~~>")
 	return
 menu(data)
-
-
-# sortData(data)
-#
-# print(Avarage_time_per_dollar(data,212763))
-#print(avarage_amount_of_country(data, "Bolivia"))
-
-# country_set = {}
-# for i in range(0,25):
-# 	country_set.add(data[i].country_name)
-# country_set.
-
-#
-# print(find_max_loan(data).loan_amount)
-# print(find_average_amount(data))
