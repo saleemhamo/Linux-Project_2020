@@ -1,11 +1,5 @@
 import csv
-import statistics
-import os
-from subprocess import call
-
 import numpy as np
-from setuptools._vendor.six import print_
-
 from Loan import *
 
 data = []
@@ -195,7 +189,7 @@ def menu(data):
 		if ch == '0':
 			break
 		if t == 0:
-			print_("INVALID CHOICE!--> Try again please")
+			print("INVALID CHOICE!--> Try again please")
 		res = '0'
 		while res != '1':
 			res = input("please enter 1 to back to menu~~>")
